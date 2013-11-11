@@ -1,7 +1,0 @@
-#!/bin/bash
-set -e
-set -x
-(cd go-gtk && git status) || git clone https://github.com/mattn/go-gtk
-cd go-gtk
-git fetch origin
-git checkout 9c284d2f66603f794fe19055f1c1c1f74c9248b4

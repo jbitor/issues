@@ -1,0 +1,29 @@
+Things for me to read.
+
+(If any specs/papers here are actually used, they should be referenced by the
+documentation or in a more resources REFERENCES file or something.)
+
+An Analysis of BitTorrent’s Two Kademlia-Based DHTs
+    http://www.cs.rice.edu/~scrosby/tr/BTMeasure-Main.pdf
+
+Sub-Second Lookups on a Large-Scale Kademlia-Based Overlay
+    http://www.diva-portal.org/smash/get/diva2:436670/FULLTEXT01
+
+Telehash Specifications
+    http://telehash.org/proto.html
+
+Existing JSON formats for encrypted data?
+    http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption-17
+
+Consider copying implementation details from libtorrent or libtransmission or
+baretorrent. You could potentially include their copyright notice, since the
+licenses  are compatible, and then copy implementation details freely.
+
+Or potentially create wrappers using the Client() interface or something
+wrapping these other torrent libraries, so that any of them could be
+plugged in to the frontends. (That would warrant the name `gotorrent`.
+
+https://groups.google.com/a/bittorrent.com/forum/#!topic/bt-developers/wYpX4WRAJvQ/discussion
+
+Bram Cohen doesn't think SHA-1 will need replacing in BitTorrent.
+http://www.quora.com/BitTorrent-protocol-company/Does-bittorrent-support-SHA-2-256-512-or-future-SHA-3/answer/Bram-Cohen

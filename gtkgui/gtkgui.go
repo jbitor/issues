@@ -35,7 +35,6 @@ func Main() {
 
 	notebook.AppendPage(MakeDhtVBox(dhtClient), gtk.NewLabel("DHT"))
 
-
 	notebook.AppendPage(MakeTorrentVBox(), gtk.NewLabel("Torrent"))
 
 	window.Connect("destroy", func() {

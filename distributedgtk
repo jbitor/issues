@@ -1,7 +1,16 @@
 #!/bin/bash
 set -e
-export GOPATH="$PWD/$(dirname ""$(which """"$0"""")"")"
-export PATH="$PATH:$GOPATH/bin"
+
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig # XXX: only correct for OS X Homebrew users
-make --always-make bin/distributedgtk > /dev/null || make --always-make bin/distributedgtk
-bin/distributedgtk $*
+
+go fmt github.com/jeremybanks/go-distributed/gtkgui
+go fmt github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
+
+go install github.com/mattn/go-gtk/gtk
+go install github.com/jeremybanks/go-distributed/gtkgui
+go install github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
+
+go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/gtkgui
+go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
+
+"$GOPATH/bin/distributedgtk" $*
