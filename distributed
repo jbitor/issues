@@ -1,19 +1,26 @@
 #!/bin/bash
 set -e
 
+go get github.com/kr/godep
+go install github.com/kr/godep
+
+export PATH="$GOPATH/bin:$PATH"
+
+OLD_PWD="$PWD"
+cd "$(dirname "$0")/cli"
+    export GOPATH="$(godep path):$GOPATH"
+
+    godep restore
+
+    godep go install github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
+cd "$OLD_PWD"
+
 go fmt github.com/jeremybanks/go-distributed/bencoding
 go fmt github.com/jeremybanks/go-distributed/dht
 go fmt github.com/jeremybanks/go-distributed/utils
 go fmt github.com/jeremybanks/go-distributed/torrent
 go fmt github.com/jeremybanks/go-distributed/cli
 go fmt github.com/jeremybanks/go-distributed/cli/distributed
-
-go install github.com/jeremybanks/go-distributed/bencoding
-go install github.com/jeremybanks/go-distributed/dht
-go install github.com/jeremybanks/go-distributed/utils
-go install github.com/jeremybanks/go-distributed/torrent
-go install github.com/jeremybanks/go-distributed/cli
-go install github.com/jeremybanks/go-distributed/cli/distributed
 
 go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/bencoding
 go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/dht
@@ -22,4 +29,4 @@ go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/torrent
 go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/cli
 go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/cli/distributed
 
-"$GOPATH/bin/distributed" $*
+PATH="$GOPATH/bin:$PATH" distributed $*

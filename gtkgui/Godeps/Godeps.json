@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/jeremybanks/go-distributed/gtkgui",
+	"GoVersion": "go1.1.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/mattn/go-gtk/gdk",
+			"Comment": "release-0.1-479-g9c284d2",
+			"Rev": "9c284d2f66603f794fe19055f1c1c1f74c9248b4"
+		}
+	]
+}

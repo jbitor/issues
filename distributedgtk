@@ -1,16 +1,32 @@
 #!/bin/bash
 set -e
 
+go get github.com/kr/godep
+go install github.com/kr/godep
+
+export PATH="$GOPATH/bin:$PATH"
+
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig # XXX: only correct for OS X Homebrew users
 
+OLD_PWD="$PWD"
+cd "$(dirname "$0")/gtkgui"
+    export GOPATH="$(godep path):$GOPATH"
+
+    godep restore
+cd "$OLD_PWD"
+
+go fmt github.com/jeremybanks/go-distributed/bencoding
+go fmt github.com/jeremybanks/go-distributed/dht
+go fmt github.com/jeremybanks/go-distributed/utils
+go fmt github.com/jeremybanks/go-distributed/torrent
 go fmt github.com/jeremybanks/go-distributed/gtkgui
 go fmt github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
 
-go install github.com/mattn/go-gtk/gtk
-go install github.com/jeremybanks/go-distributed/gtkgui
-go install github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
-
+go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/bencoding
+go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/dht
+go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/utils
+go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/torrent
 go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/gtkgui
 go test -run=. -bench=NONE github.com/jeremybanks/go-distributed/gtkgui/distributedgtk
 
-"$GOPATH/bin/distributedgtk" $*
+PATH="$GOPATH/bin:$PATH" distributedgtk $*
