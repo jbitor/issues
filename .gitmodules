@@ -17,3 +17,7 @@
 [submodule "src/github.com/jbitor/webclient"]
     path = src/github.com/jbitor/webclient
     url = https://github.com/jbitor/webclient.git
+
+[submodule "src/github.com/soheilhy/glosure"]
+    path = src/github.com/soheilhy/glosure
+    url = https://github.com/soheilhy/glosure.git
